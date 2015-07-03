@@ -5,6 +5,33 @@ from django.contrib.staticfiles.templatetags.staticfiles import static
 
 ADMINLTE_SETTINGS = getattr(settings, "ADMINLTE_SETTINGS", {})
 
+_DEFAULT_REGISTER_FIELDS = [
+    {
+        'name': 'fullname',
+        'type': 'text',
+        'placeholder': 'Full Name',
+        'glyphicon': 'user',
+    },
+    {
+        'name': 'username',
+        'type': 'text',
+        'placeholder': 'Email',
+        'glyphicon': 'envelope',
+    },
+    {
+        'name': 'password',
+        'type': 'password',
+        'placeholder': 'Password',
+        'glyphicon': 'lock',
+    },
+    {
+        'name': 'password2',
+        'type': 'password',
+        'placeholder': 'Retype Password',
+        'glyphicon': 'log-in',
+    },
+]
+
 def _get(key, default):
     frags = key.split('.')
     settings = ADMINLTE_SETTINGS
@@ -41,18 +68,35 @@ jquery_url = _jquery_url if _jquery_url else static('AdminLTE/plugins/jQuery/jQu
 
 skin = _get('THEME.SKIN', 'blue')
 
+url_login = _get('URL.LOGIN', '#')
+url_login_form = _get('URL.LOGIN_FORM', '.')
+url_register = _get('URL.REGISTER', '#')
+url_register_form = _get('URL.REGISTER_FORM', '.')
+url_forgot_password = _get('URL.FORGOT_PASSWORD', '#')
+url_terms = _get('URL.TERMS', '#')
+
+login_page_title = _get('LOGIN.PAGE_TITLE', 'AdminLTE 2 | Login Page')
 login_logo = _get('LOGIN.LOGO', '<b>Admin</b>LTE')
 login_message = _get('LOGIN.MESSAGE', 'Sign in to start your session')
-login_form_action = _get('LOGIN.FORM_ACTION', '.')
 login_form_method = _get('LOGIN.FORM_METHOD', 'post')
 login_username_is_email = _get('LOGIN.USERNAME_IS_EMAIL', True)
 login_username_placeholder = _get('LOGIN.USERNAME_PLACEHOLDER', 'Email')
 login_password_placeholder = _get('LOGIN.PASSWORD_PLACEHOLDER', 'Password')
 login_remember_me_text = _get('LOGIN.REMEMBER_ME_TEXT', 'Remember Me')
-login_signin_btn_text = _get('LOGIN.SIGNIN_BUTTON_TEXT', 'Sign In')
+login_btn_text = _get('LOGIN.BUTTON_TEXT', 'Sign In')
 login_socials = _get('LOGIN.SOCIALS', [])
 login_has_social = len(login_socials) > 0
-login_forgot_password_url = _get('LOGIN.FORGOT_PASSWORD_URL', '#')
-login_forgot_password_text = _get('LOGIN.FORGOT_PASSWORD_TEXT', 'I forgot my password')
-login_register_url = _get('LOGIN.REGISTER_URL', '#')
-login_register_text = _get('LOGIN.REGISTER_TEXT', 'Register a new membership')
+login_forgot_password_link_text = _get('LOGIN.FORGOT_PASSWORD_LINK_TEXT', 'I forgot my password')
+login_register_link_text = _get('LOGIN.REGISTER_LINK_TEXT', 'Register a new membership')
+
+register_page_title = _get('REGISTER.PAGE_TITLE', 'AdminLTE 2 | Registration Page')
+register_logo = _get('REGISTER.LOGO', '<b>Admin</b>LTE')
+register_message = _get('REGISTER.MESSAGE', 'Register a new membership')
+register_form_method = _get('REGISTER.FORM_METHOD', 'post')
+register_fields = _get('REGISTER.FIELDS', _DEFAULT_REGISTER_FIELDS)
+if url_terms:
+    register_agree_terms_text = _get('REGISTER.AGREE_TERMS_TEXT', 'I agree to the <a href="' + url_terms + '">Terms</a>')
+else:
+    register_agree_terms_text = None
+register_btn_text = _get('REGISTER.BUTTON_TEXT', 'Register')
+register_login_link_text = _get('REGISTER.LOGIN_LINK_TEXT', 'I already have a membership')
