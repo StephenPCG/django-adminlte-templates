@@ -1,0 +1,9 @@
+[submodule "contrib/AdminLTE"]
+	path = contrib/AdminLTE
+	url = https://github.com/almasaeed2010/AdminLTE.git
+[submodule "contrib/Font-Awesome"]
+	path = contrib/Font-Awesome
+	url = https://github.com/FortAwesome/Font-Awesome.git
+[submodule "contrib/ionicons"]
+	path = contrib/ionicons
+	url = https://github.com/driftyco/ionicons.git

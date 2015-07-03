@@ -1,0 +1,17 @@
+{% load AdminLTE %}
+<!DOCTYPE html>
+<html lang="{{ ALTE_LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block html_head_title %}Default Title{% endblock html_head_title %}</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    {% alte_load_css "bootstrap" "fontawesome" "ionicons" "adminlte" %}
+    {% block html_head_post %}{% endblock html_head_post %}
+</head>
+
+<body class="{% block html_body_class %}{% endblock html_body_class %}">
+    {% block html_body %}{% endblock html_body %}
+    {% alte_load_js "jquery" "bootstrap" "adminlte" %}
+    {% block html_body_post %}{% endblock html_body_post %}
+</body>
+</html>

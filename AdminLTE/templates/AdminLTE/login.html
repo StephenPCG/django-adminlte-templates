@@ -1,0 +1,81 @@
+{% extends "AdminLTE/base.html" %}
+{% load AdminLTE %}
+
+{% block html_head_title %}Login{% endblock %}
+
+{% block html_head_post %}
+  {% alte_load_plugin_css "iCheck/square/blue" %}
+{% endblock html_head_post %}
+
+{% block html_body_class %}login-page{% endblock %}
+
+{% block html_body %}
+<div class="login-box">
+    <div class="login-logo">{% autoescape off %}{{ ALTE_LOGIN_LOGO }}{% endautoescape %}</div>
+    <div class="login-box-body">
+        <p class="login-box-msg">{% autoescape off %}{{ ALTE_LOGIN_MESSAGE }}{% endautoescape %}</p>
+        {% if error %}
+        <p class="login-box-msg text-red">{{ error }}</p>
+        {% endif %}
+        <form action="{{ ALTE_LOGIN_FORM_ACTION }}" method="{{ ALTE_LOGIN_FORM_METHOD }}">
+            {% csrf_token %}
+            {% if next %}<input type="hidden" name="next" value="{{ next }}" />{% endif %}
+            <div class="form-group has-feedback">
+                {% if ALTE_LOGIN_USERNAME_IS_EMAIL %}
+                <input type="text" class="form-control" placeholder="{{ ALTE_LOGIN_USERNAME_PLACEHOLDER }}" name="username" autofocus/>
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                {% else %}
+                <input type="text" class="form-control" placeholder="{{ ALTE_LOGIN_USERNAME_PLACEHOLDER }}" name="username" autofocus/>
+                {% endif %}
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" class="form-control" placeholder="{{ ALTE_LOGIN_PASSWORD_PLACEHOLDER }}" name="password"/>
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="row">
+                <div class="col-xs-8">
+                    {% if ALTE_LOGIN_REMEMBER_ME_TEXT %}
+                    <div class="checkbox icheck">
+                        <label>
+                            <input type="checkbox" name="remember_me"> {{ ALTE_LOGIN_REMEMBER_ME_TEXT }}
+                        </label>
+                    </div>
+                    {% endif %}
+                </div><!-- /.col -->
+                <div class="col-xs-4">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">{{ ALTE_LOGIN_SIGNIN_BTN_TEXT }}</button>
+                </div><!-- /.col -->
+            </div>
+        </form>
+
+        {% if ALTE_LOGIN_HAS_SOCIAL %}
+        <div class="social-auth-links text-center">
+            <p>- OR -</p>
+            {% for social in ALTE_LOGIN_SOCIALS %}
+            <a href="{{ social.link }}" class="btn btn-block btn-social btn-flat btn-{{ social.name }}"><i class="fa fa-{{ social.name }}"></i>{% autoescape off %}{{ social.text }}{% endautoescape %}</a>
+            {% endfor %}
+        </div><!-- /.social-auth-links -->
+        {% endif %}
+
+        {% if ALTE_LOGIN_FORGOT_PASSWORD_URL %}
+        <a href="{{ ALTE_LOGIN_FORGOT_PASSWORD_URL }}">{{ ALTE_LOGIN_FORGOT_PASSWORD_TEXT }}</a><br>
+        {% endif %}
+        {% if ALTE_LOGIN_REGISTER_URL %}
+        <a href="{{ ALTE_LOGIN_REGISTER_URL }}" class="text-center">{{ ALTE_LOGIN_REGISTER_TEXT }}</a>
+        {% endif %}
+    </div><!-- /.login-box-body -->
+</div><!-- /.login-box -->
+{% endblock html_body %}
+
+{% block html_body_post %}
+    {% alte_load_plugin_js "iCheck" %}
+    <script>
+      $(function () {
+        $('input').iCheck({
+          checkboxClass: 'icheckbox_square-blue',
+          radioClass: 'iradio_square-blue',
+          increaseArea: '20%' // optional
+        });
+      });
+    </script>
+{% endblock html_body_post %}

@@ -1,0 +1,4 @@
+*.sw[op]
+*.py[cd]
+/*.egg-info/
+/dist/
