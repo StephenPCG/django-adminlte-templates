@@ -19,7 +19,8 @@ from django.views.generic.base import TemplateView
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', TemplateView.as_view(template_name='AdminLTE/page.html')),
     url(r'^login/$', auth_views.login, {'template_name': 'AdminLTE/login.html'}),
     url(r'^register/$', TemplateView.as_view(template_name='AdminLTE/register.html')),
+    url(r'^admin/', include(admin.site.urls)),
 ]

@@ -14,14 +14,23 @@ def processor(request):
         key = 'ALTE_%s' % key
         alte_context[key] = value
 
+    navigation_menu = [t.to_dict(request) for t in navigation_menu_list]
+    navigation_menu = [t for t in navigation_menu if t]
+    set('NAVIGATION_MENU', navigation_menu)
+
     set('LANGUAGE_CODE', getattr(settings, 'LANGUAGE_CODE', 'en-us'))
 
     set('URL_LOGIN', url_login)
     set('URL_LOGIN_FORM', url_login_form)
+    set('URL_LOGOUT', url_logout)
+    set('URL_PROFILE', url_profile)
     set('URL_REGISTER', url_register)
     set('URL_REGISTER_FORM', url_register_form)
     set('URL_FORGOT_PASSWORD', url_forgot_password)
     set('URL_TERMS', url_terms)
+    set('URL_PAGE_LOGO_HREF', url_page_logo_href)
+
+    set('THEME_SKIN', skin)
 
     set('LOGIN_PAGE_TITLE', login_page_title)
     set('LOGIN_LOGO', login_logo)
@@ -45,5 +54,8 @@ def processor(request):
     set('REGISTER_AGREE_TERMS_TEXT', register_agree_terms_text)
     set('REGISTER_BTN_TEXT', register_btn_text)
     set('REGISTER_LOGIN_LINK_TEXT', register_login_link_text)
+
+    set('PAGE_LOGO_LG', page_logo_lg)
+    set('PAGE_LOGO_MINI', page_logo_mini)
 
     return alte_context

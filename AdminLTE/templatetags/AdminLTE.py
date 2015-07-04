@@ -29,7 +29,6 @@ def alte_load_css(*names):
             lines.append('<link href="%s" rel="stylesheet" type="text/css" />' % url)
     return '\n'.join(lines)
 
-
 @register.simple_tag
 def alte_load_js(*names):
     lines = []
@@ -75,3 +74,7 @@ def alte_load_plugin_js(*names):
         if url:
             lines.append('<script src="%s" type="text/javascript"></script>' % url)
     return '\n'.join(lines)
+
+@register.simple_tag
+def alte_get_img_url(name):
+    return pjoin(adminlte_url_base, name)

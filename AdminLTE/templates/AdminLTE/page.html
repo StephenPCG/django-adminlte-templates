@@ -1,0 +1,29 @@
+{% extends "AdminLTE/base.html" %}
+{% load AdminLTE %}
+
+{% block html_head_title %}Page Title{% endblock html_head_title %}
+{% block html_head_post %}
+    {% alte_load_skin_css %}
+    {% block html_head_more %}{% endblock html_head_more %}
+{% endblock %}
+
+{% block html_body_class %}skin-{{ ALTE_THEME_SKIN }} sidebar-mini{% endblock html_body_class %}
+
+{% block html_body %}
+    <div class="wrapper">
+        {% include "AdminLTE/widgets/page_header.html" %}
+        {% include "AdminLTE/widgets/page_sidebar.html" %}
+        <div class="content-wrapper">
+            {% block html_body_content %}
+            <section class="content-header">{% block content_header_section %}{% endblock content_header_section %}</section>
+            <section class="content">{% block content_section %}{% endblock content_section %}</section>
+            {% endblock html_body_content %}
+        </div><!-- ./content-wrap -->
+        {% include "AdminLTE/widgets/page_footer.html" %}
+        {% include "AdminLTE/widgets/page_control_sidebar.html" %}
+    </div><!-- ./wrapper -->
+{% endblock html_body %}
+
+{% block html_body_post %}
+    {% block html_body_more %}{% endblock html_body_more %}
+{% endblock html_body_post %}

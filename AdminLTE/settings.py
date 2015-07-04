@@ -3,6 +3,8 @@
 from django.conf import settings
 from django.contrib.staticfiles.templatetags.staticfiles import static
 
+from os.path import join as pjoin
+
 ADMINLTE_SETTINGS = getattr(settings, "ADMINLTE_SETTINGS", {})
 
 _DEFAULT_REGISTER_FIELDS = [
@@ -46,6 +48,8 @@ def _get(key, default):
 
     return settings
 
+navigation_menu_list = _get('NAVTREE', list())
+
 # bootstrap url base
 _bootstrap_url_base = _get('STATIC.BOOTSTRAP_URL_BASE', None)
 bootstrap_url_base = _bootstrap_url_base if _bootstrap_url_base else static('bootstrap')
@@ -70,10 +74,13 @@ skin = _get('THEME.SKIN', 'blue')
 
 url_login = _get('URL.LOGIN', '#')
 url_login_form = _get('URL.LOGIN_FORM', '.')
+url_logout = _get('URL.LOGOUT', '#')
+url_profile = _get('URL.PROFILE', '#')
 url_register = _get('URL.REGISTER', '#')
 url_register_form = _get('URL.REGISTER_FORM', '.')
 url_forgot_password = _get('URL.FORGOT_PASSWORD', '#')
 url_terms = _get('URL.TERMS', '#')
+url_page_logo_href = _get('URL.PAGE_LOGO_HREF', '/')
 
 login_page_title = _get('LOGIN.PAGE_TITLE', 'AdminLTE 2 | Login Page')
 login_logo = _get('LOGIN.LOGO', '<b>Admin</b>LTE')
@@ -100,3 +107,6 @@ else:
     register_agree_terms_text = None
 register_btn_text = _get('REGISTER.BUTTON_TEXT', 'Register')
 register_login_link_text = _get('REGISTER.LOGIN_LINK_TEXT', 'I already have a membership')
+
+page_logo_lg = _get('PAGE.LOGO_LG', '<b>Admin</b>LTE')
+page_logo_mini = _get('PAGE.LOGO_MINI', '<b>A</b>LTE')

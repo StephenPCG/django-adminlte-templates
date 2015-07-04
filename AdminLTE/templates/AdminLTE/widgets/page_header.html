@@ -1,0 +1,20 @@
+<header class="main-header">
+<a href="{{ ALTE_URL_PAGE_LOGO_HREF }}" class="logo">
+    <span class="logo-mini">{% autoescape off %}{{ ALTE_PAGE_LOGO_MINI }}{% endautoescape %}</span>
+    <span class="logo-lg">{% autoescape off %}{{ ALTE_PAGE_LOGO_LG }}{% endautoescape %}</span>
+</a>
+<nav class="navbar navbar-static-top" role="navigation">
+    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <span class="sr-only">Toggle navigation</span>
+    </a>
+    <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+            {% block page_header_messages %}{% include 'AdminLTE/widgets/page_header/messages_dropdown.html' %}{% endblock %}
+            {% block page_header_notifications %}{% include 'AdminLTE/widgets/page_header/notifications_dropdown.html' %}{% endblock %}
+            {% block page_header_tasks %}{% include 'AdminLTE/widgets/page_header/tasks_dropdown.html' %}{% endblock %}
+            {% block page_header_user_profile %}{% include 'AdminLTE/widgets/page_header/userprofile_dropdown.html' %}{% endblock %}
+            {% block page_header_control_sidebar %}{% include 'AdminLTE/widgets/page_header/control_sidebar.html' %}{% endblock %}
+        </ul>
+    </div>
+</nav>
+</header>
