@@ -1,4 +1,7 @@
 include README.md
 include LICENSE
+recursive-include AdminLTE/static *
+recursive-include AdminLTE/templates *
+recursive-include AdminLTE/templatetags *
 global-exclude .git
 global-exclude .gitignore

@@ -8,7 +8,7 @@ setup(
     license='MIT License',
     description='AdminLTE Bootstrap Temolates packaged for Django',
     long_description=open('README.md', 'r').read(),
-    url='https://github.com/StephenPCG/django-adminlte-template',
+    url='https://github.com/StephenPCG/django-adminlte-templates',
     author='Stephen Zhang',
     author_email='stephenpcg@gmail.com',
     classifiers=[

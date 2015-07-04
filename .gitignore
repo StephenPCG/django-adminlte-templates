@@ -2,3 +2,4 @@
 *.py[cd]
 /*.egg-info/
 /dist/
+db.sqlite3
