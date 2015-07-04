@@ -20,11 +20,11 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
-        'APP_DIRS': True,                  # <--
+        'APP_DIRS': True,  # <--
         'OPTIONS': {
             'context_processors': [
                 ...
-                'AdminLTE.tcp.processor',  # <---
+                'AdminLTE.context_processors.processor',  # <---
             ],
         },
     },
