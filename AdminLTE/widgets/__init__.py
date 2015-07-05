@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 
-class Colors(object):
+class _ContainsMeta(type):
+    def __contains__(self, item):
+        return hasattr(self, item.upper())
+
+class COLORS(object):
     AQUA = "aqua"
     BLACK = "black"
     BLUE = "blue"
@@ -18,12 +22,20 @@ class Colors(object):
     TEAL = "teal"
     YELLOW = "yellow"
 
+    __metaclass__ = _ContainsMeta
+    def __init__(self):
+        raise ValueError('Bound is not allowed for this class.')
+
 class WIDGET_TYPES(object):
     PRIMARY = "primary"
     INFO = "info"
     SUCCESS = "success"
     WARNING = "warning"
     DANGER = "danger"
+
+    __metaclass__ = _ContainsMeta
+    def __init__(self):
+        raise ValueError('Bound is not allowed for this class.')
 
 class WidgetBase(object):
     classes = None
