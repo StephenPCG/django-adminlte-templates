@@ -1,7 +1,7 @@
 {% extends "AdminLTE/base.html" %}
 {% load AdminLTE %}
 
-{% block html_head_title %}{{ ALTE_REGISTER_PAGE_TITLE }}{% endblock %}
+{% block html_head_title %}{{ ALTE.REGISTER.PAGE_TITLE }}{% endblock %}
 
 {% block html_head_post %}
   {% alte_load_plugin_css "iCheck/square/blue" %}
@@ -11,15 +11,15 @@
 
 {% block html_body %}
 <div class="register-box">
-    <div class="register-logo">{% autoescape off %}{{ ALTE_REGISTER_LOGO }}{% endautoescape %}</div>
+    <div class="register-logo">{% autoescape off %}{{ ALTE.REGISTER.LOGO }}{% endautoescape %}</div>
     <div class="register-box-body">
-        <p class="login-box-msg">{% autoescape off %}{{ ALTE_REGISTER_MESSAGE }}{% endautoescape %}</p>
+        <p class="login-box-msg">{% autoescape off %}{{ ALTE.REGISTER.MESSAGE }}{% endautoescape %}</p>
         {% if error %}
         <p class="login-box-msg text-red">{{ error }}</p>
         {% endif %}
-        <form action="{{ ALTE_URL_REGISTER }}" method="{{ ALTE_REGISTER_FORM_METHOD }}">
+        <form action="{{ ALTE.URL_REGISTER }}" method="{{ ALTE.REGISTER.FORM_METHOD }}">
             {% csrf_token %}
-            {% for field in ALTE_REGISTER_FIELDS %}
+            {% for field in ALTE.REGISTER.FIELDS %}
             <div class="form-group has-feedback">
                 <input type={{ field.type }} class="form-control" placeholder="{{ field.placeholder }}" name="{{ field.name }}"/>
                 {% if field.glyphicon %}
@@ -29,31 +29,31 @@
             {% endfor %}
             <div class="row">
                 <div class="col-xs-8">
-                    {% if ALTE_URL_TERMS %}
+                    {% if ALTE.URL_TERMS %}
                     <div class="checkbox icheck">
                         <label>
-                            <input type="checkbox" name="agree_terms">{% autoescape off %} {{ ALTE_REGISTER_AGREE_TERMS_TEXT }} {% endautoescape %}
+                            <input type="checkbox" name="agree_terms">{% autoescape off %} {{ ALTE.REGISTER.AGREE_TERMS_TEXT }} {% endautoescape %}
                         </label>
                     </div>
                     {% endif %}
                 </div><!-- /.col -->
                 <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">{{ ALTE_REGISTER_BTN_TEXT }}</button>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">{{ ALTE.REGISTER.BTN_TEXT }}</button>
                 </div><!-- /.col -->
             </div>
         </form>
 
-        {% if ALTE_LOGIN_HAS_SOCIAL %}
+        {% if ALTE.LOGIN.HAS_SOCIAL %}
         <div class="social-auth-links text-center">
             <p>- OR -</p>
-            {% for social in ALTE_LOGIN_SOCIALS %}
+            {% for social in ALTE.LOGIN.SOCIALS %}
             <a href="{{ social.link }}" class="btn btn-block btn-social btn-flat btn-{{ social.name }}"><i class="fa fa-{{ social.name }}"></i>{% autoescape off %}{{ social.text }}{% endautoescape %}</a>
             {% endfor %}
         </div><!-- /.social-auth-links -->
         {% endif %}
 
-        {% if ALTE_URL_LOGIN %}
-        <a href="{{ ALTE_URL_LOGIN }}" class="text-center">{{ ALTE_REGISTER_LOGIN_LINK_TEXT }}</a>
+        {% if ALTE.URL.LOGIN %}
+        <a href="{{ ALTE.URL.LOGIN }}" class="text-center">{{ ALTE.REGISTER.LOGIN_LINK_TEXT }}</a>
         {% endif %}
     </div><!-- /.register-box-body -->
 </div><!-- /.register-box -->

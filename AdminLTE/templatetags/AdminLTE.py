@@ -6,9 +6,20 @@ from django.contrib.staticfiles.templatetags.staticfiles import static
 
 from os.path import join as pjoin
 
-from ..settings import *
+from ..settings import Settings
 
 register = template.Library()
+
+_bootstrap_url_base = Settings.get('STATIC.BOOTSTRAP_URL_BASE', None)
+bootstrap_url_base = _bootstrap_url_base if _bootstrap_url_base else static('bootstrap')
+_fontawesome_url_base = Settings.get('STATIC.FONTAWESOME_URL_BASE', None)
+fontawesome_url_base = _fontawesome_url_base if _fontawesome_url_base else static('Font-Awesome')
+_ionicons_url_base = Settings.get('STATIC.IONICONS_URL_BASE', None)
+ionicons_url_base = _ionicons_url_base if _ionicons_url_base else static('ionicons')
+_adminlte_url_base = Settings.get('STATIC.ADMINLTE_URL_BASE', None)
+adminlte_url_base = _adminlte_url_base if _adminlte_url_base else static('AdminLTE')
+_jquery_url = Settings.get('STATIC.JQUERY_URL', None)
+jquery_url = _jquery_url if _jquery_url else static('AdminLTE/plugins/jQuery/jQuery-2.1.4.min.js')
 
 @register.simple_tag
 def alte_load_css(*names):
@@ -48,7 +59,7 @@ def alte_load_js(*names):
 
 @register.simple_tag
 def alte_load_skin_css():
-    skinurl = pjoin(adminlte_url_base, 'css/skins/skin-%s.min.css' % skin)
+    skinurl = pjoin(adminlte_url_base, 'css/skins/skin-%s.min.css' % Settings['THEME.SKIN'])
     return '<link href="%s" rel="stylesheet" type="text/css" />' % skinurl
 
 @register.simple_tag
@@ -83,6 +94,7 @@ def alte_get_img_url(name):
 
 @register.simple_tag(takes_context=True)
 def alte_sidebar(context):
+    sidebar_generator = Settings['SIDEBAR_GENERATOR']
     if callable(sidebar_generator):
         sidebar = sidebar_generator(context['request'])
         return sidebar.to_html()

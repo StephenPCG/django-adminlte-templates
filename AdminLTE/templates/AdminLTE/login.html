@@ -1,7 +1,7 @@
 {% extends "AdminLTE/base.html" %}
 {% load AdminLTE %}
 
-{% block html_head_title %}{{ ALTE_LOGIN_PAGE_TITLE }}{% endblock %}
+{% block html_head_title %}{{ ALTE.LOGIN.PAGE_TITLE }}{% endblock %}
 
 {% block html_head_post %}
   {% alte_load_plugin_css "iCheck/square/blue" %}
@@ -11,57 +11,57 @@
 
 {% block html_body %}
 <div class="login-box">
-    <div class="login-logo">{% autoescape off %}{{ ALTE_LOGIN_LOGO }}{% endautoescape %}</div>
+    <div class="login-logo">{% autoescape off %}{{ ALTE.LOGIN.LOGO }}{% endautoescape %}</div>
     <div class="login-box-body">
-        <p class="login-box-msg">{% autoescape off %}{{ ALTE_LOGIN_MESSAGE }}{% endautoescape %}</p>
+        <p class="login-box-msg">{% autoescape off %}{{ ALTE.LOGIN.MESSAGE }}{% endautoescape %}</p>
         {% if error %}
         <p class="login-box-msg text-red">{{ error }}</p>
         {% endif %}
-        <form action="{{ ALTE_URL_LOGIN_FORM }}" method="{{ ALTE_LOGIN_FORM_METHOD }}">
+        <form action="{{ ALTE.URL_LOGIN.FORM }}" method="{{ ALTE.LOGIN.FORM_METHOD }}">
             {% csrf_token %}
             {% if next %}<input type="hidden" name="next" value="{{ next }}" />{% endif %}
             <div class="form-group has-feedback">
-                {% if ALTE_LOGIN_USERNAME_IS_EMAIL %}
-                <input type="text" class="form-control" placeholder="{{ ALTE_LOGIN_USERNAME_PLACEHOLDER }}" name="username" autofocus/>
+                {% if ALTE.LOGIN.USERNAME_IS_EMAIL %}
+                <input type="text" class="form-control" placeholder="{{ ALTE.LOGIN.USERNAME_PLACEHOLDER }}" name="username" autofocus/>
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 {% else %}
-                <input type="text" class="form-control" placeholder="{{ ALTE_LOGIN_USERNAME_PLACEHOLDER }}" name="username" autofocus/>
+                <input type="text" class="form-control" placeholder="{{ ALTE.LOGIN.USERNAME_PLACEHOLDER }}" name="username" autofocus/>
                 {% endif %}
             </div>
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="{{ ALTE_LOGIN_PASSWORD_PLACEHOLDER }}" name="password"/>
+                <input type="password" class="form-control" placeholder="{{ ALTE.LOGIN.PASSWORD_PLACEHOLDER }}" name="password"/>
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="row">
                 <div class="col-xs-8">
-                    {% if ALTE_LOGIN_REMEMBER_ME_TEXT %}
+                    {% if ALTE.LOGIN.REMEMBER_ME_TEXT %}
                     <div class="checkbox icheck">
                         <label>
-                            <input type="checkbox" name="remember_me"> {{ ALTE_LOGIN_REMEMBER_ME_TEXT }}
+                            <input type="checkbox" name="remember_me"> {{ ALTE.LOGIN.REMEMBER_ME_TEXT }}
                         </label>
                     </div>
                     {% endif %}
                 </div><!-- /.col -->
                 <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">{{ ALTE_LOGIN_BTN_TEXT }}</button>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">{{ ALTE.LOGIN.BUTTON_TEXT }}</button>
                 </div><!-- /.col -->
             </div>
         </form>
 
-        {% if ALTE_LOGIN_HAS_SOCIAL %}
+        {% if ALTE.LOGIN.HAS_SOCIAL %}
         <div class="social-auth-links text-center">
             <p>- OR -</p>
-            {% for social in ALTE_LOGIN_SOCIALS %}
+            {% for social in ALTE.LOGIN.SOCIALS %}
             <a href="{{ social.link }}" class="btn btn-block btn-social btn-flat btn-{{ social.name }}"><i class="fa fa-{{ social.name }}"></i>{% autoescape off %}{{ social.text }}{% endautoescape %}</a>
             {% endfor %}
         </div><!-- /.social-auth-links -->
         {% endif %}
 
-        {% if ALTE_URL_FORGOT_PASSWORD %}
-        <a href="{{ ALTE_URL_FORGOT_PASSWORD }}">{{ ALTE_LOGIN_FORGOT_PASSWORD_TEXT }}</a><br>
+        {% if ALTE.URL_FORGOT_PASSWORD %}
+        <a href="{{ ALTE.URL_FORGOT_PASSWORD }}">{{ ALTE.LOGIN.FORGOT_PASSWORD_TEXT }}</a><br>
         {% endif %}
-        {% if ALTE_URL_REGISTER %}
-        <a href="{{ ALTE_URL_REGISTER }}" class="text-center">{{ ALTE_LOGIN_REGISTER_TEXT }}</a>
+        {% if ALTE.URL_REGISTER %}
+        <a href="{{ ALTE.URL_REGISTER }}" class="text-center">{{ ALTE.LOGIN.REGISTER_TEXT }}</a>
         {% endif %}
     </div><!-- /.login-box-body -->
 </div><!-- /.login-box -->

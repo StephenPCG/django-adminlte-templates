@@ -7,16 +7,16 @@
     {% block html_head_more %}{% endblock html_head_more %}
 {% endblock %}
 
-{% block html_body_class %}skin-{{ ALTE_THEME_SKIN }} sidebar-mini{% endblock html_body_class %}
+{% block html_body_class %}skin-{{ ALTE.THEME.SKIN }} sidebar-mini{% endblock html_body_class %}
 
 {% block html_body %}
     <div class="wrapper">
 
         <header class="main-header">
         {% block page_header %}
-            <a href="{{ ALTE_URL_PAGE_LOGO_HREF }}" class="logo">
-                <span class="logo-mini">{% autoescape off %}{{ ALTE_PAGE_LOGO_MINI }}{% endautoescape %}</span>
-                <span class="logo-lg">{% autoescape off %}{{ ALTE_PAGE_LOGO_LG }}{% endautoescape %}</span>
+            <a href="{{ ALTE.URL.PAGE_LOGO_HREF }}" class="logo">
+                <span class="logo-mini">{% autoescape off %}{{ ALTE.PAGE.LOGO_MINI }}{% endautoescape %}</span>
+                <span class="logo-lg">{% autoescape off %}{{ ALTE.PAGE.LOGO_LG }}{% endautoescape %}</span>
             </a>
             <nav class="navbar navbar-static-top" role="navigation">
                 <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
@@ -80,7 +80,7 @@
 
         <footer class="main-footer">
         {% block page_footer %}
-            <strong>Copyright &copy; {% now "Y" %} {% autoescape off %}{{ ALTE_PAGE_LOGO_LG }}{% endautoescape %}</strong> All rights reserved.
+            <strong>Copyright &copy; {% now "Y" %} {% autoescape off %}{{ ALTE.PAGE.LOGO_LG }}{% endautoescape %}</strong> All rights reserved.
         {% endblock %}
         </footer>
 

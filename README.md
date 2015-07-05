@@ -47,25 +47,20 @@ Visit ``/someurl/`` and you should see the default AdminLTE login page.
 
 ### Configuration
 
-All adminlte settings are wrapped into a dict object named ``ADMINLTE_SETTINGS``,
-you can check ``settings_example.py`` for all options.
-You can ommit any portion if the default value is suitable for you,
-but please carefully keep the structure.
-
-Since there are too many configurations,
-it's recommended that you store adminlte settings in an individual file, and import it from settings.py.
-For example:
+All template related settings can be initialized with a dict, in settings.py:
 
 ```
-# adminlte_settings.py
-ADMINLTE_SETTINGS = {
-    ...
-}
-
-# settings.py
-...
-from adminlte_settings import ADMINLTE_SETTINGS
+from AdminLTE.settings import Settings
+Settings.load(
+    {
+        # settings ...
+    }
+)
 ```
+
+These settings are only loaded on startup, no runtime changes are allowed.
+
+Check ``AdminLTE/default_settings.py`` for all possible settings.
 
 ### Extends AdminLTE page templates
 

@@ -103,4 +103,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-from adminlte_settings import ADMINLTE_SETTINGS
+import adminlte_settings
