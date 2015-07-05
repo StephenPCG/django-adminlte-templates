@@ -4,34 +4,16 @@ from django.template import loader, Context
 
 import re
 
-from .utils import ALTE_ELEM_TYPES, ALTE_COLORS
-from .utils import faicon
-from .utils import label as genlabel
+from . import WidgetBase
+from . import FontAwesomeIcon as FAIcon
+from . import Label
 
-class SidebarItem(object):
-    request = None
-
-    def __init__(self, request=None, **kwargs):
-        for key, value in kwargs.items():
-            if hasattr(self, key):
-                setattr(self, key, value)
-        if request:
-            self.set_request(request)
-
-    def set_request(self, request):
-        self.request = request
-        if hasattr(self, 'children') and getattr(self, 'children'):
-            for child in getattr(self, 'children'):
-                child.set_request(request)
-
+class SidebarItem(WidgetBase):
     def is_active(self):
         return False
 
     def is_hidden(self):
         return False
-
-    def to_html(self):
-        return ''
 
 class SidebarMenuItem(SidebarItem):
     # the menu item text
@@ -148,8 +130,8 @@ class SidebarMenuItem(SidebarItem):
 class SimpleSidebarMenuItem(SidebarMenuItem):
     def __init__(self, icon=None, icon_color=None, label=None, **kwargs):
         super(SimpleSidebarMenuItem, self).__init__(**kwargs)
-        self.icon = faicon(icon, color=icon_color)
-        self.label = genlabel(label.get("data"), type=label.get("type"), classes=["pull-right"]) if label else None
+        self.icon = FAIcon(icon, color=icon_color)
+        self.label = Label(label.get("data"), type=label.get("type"), classes=["pull-right"]) if label else None
 
 class SidebarSearchForm(SidebarItem):
     action = '#'
@@ -163,7 +145,7 @@ class SidebarSearchForm(SidebarItem):
             '<div class="input-group">',
             '<input type="text" name="%s" class="form-control" placeholder="%s"/>' % (self.name, self.placeholder),
             '<span class="input-group-btn">',
-            '<button type="submit" name="search" id="search-btn" class="btn btn-flat">%s</button>' % faicon('search'),
+            '<button type="submit" name="search" id="search-btn" class="btn btn-flat">%s</button>' % FAIcon('search'),
             '</span>',
             '</div>',
             '</form>',
@@ -179,7 +161,7 @@ class SidebarSearchMenuForm(SidebarItem):
             '<input type="text" id="search-menu-text" class="form-control" placeholder="%s" onKeyUp="search_menu_items()"/>' \
                     % (self.placeholder),
             '<span class="input-group-btn">',
-            '<button class="btn btn-flat">%s</button>' % faicon('search'),
+            '<button class="btn btn-flat">%s</button>' % FAIcon('search'),
             '</span>',
             '</div>',
             '</div>',
