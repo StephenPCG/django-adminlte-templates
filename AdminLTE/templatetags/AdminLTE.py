@@ -70,6 +70,8 @@ def alte_load_plugin_js(*names):
     for name in names:
         if name == 'iCheck':
             url = pjoin(adminlte_url_base, 'plugins/iCheck/icheck.min.js')
+        elif name == 'slimScroll':
+            url = pjoin(adminlte_url_base, 'plugins/slimScroll/jquery.slimscroll.js')
 
         if url:
             lines.append('<script src="%s" type="text/javascript"></script>' % url)

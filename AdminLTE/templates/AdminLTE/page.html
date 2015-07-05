@@ -11,16 +11,91 @@
 
 {% block html_body %}
     <div class="wrapper">
-        {% include "AdminLTE/widgets/page_header.html" %}
-        {% include "AdminLTE/widgets/page_sidebar.html" %}
+
+        <header class="main-header">
+        {% block page_header %}
+            <a href="{{ ALTE_URL_PAGE_LOGO_HREF }}" class="logo">
+                <span class="logo-mini">{% autoescape off %}{{ ALTE_PAGE_LOGO_MINI }}{% endautoescape %}</span>
+                <span class="logo-lg">{% autoescape off %}{{ ALTE_PAGE_LOGO_LG }}{% endautoescape %}</span>
+            </a>
+            <nav class="navbar navbar-static-top" role="navigation">
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        {% block page_header_messages %}{% include 'AdminLTE/widgets/page_header/messages_dropdown.html' %}{% endblock %}
+                        {% block page_header_notifications %}{% include 'AdminLTE/widgets/page_header/notifications_dropdown.html' %}{% endblock %}
+                        {% block page_header_tasks %}{% include 'AdminLTE/widgets/page_header/tasks_dropdown.html' %}{% endblock %}
+                        {% block page_header_user_profile %}{% include 'AdminLTE/widgets/page_header/userprofile_dropdown.html' %}{% endblock %}
+                        {% block page_header_control_sidebar %}{% include 'AdminLTE/widgets/page_header/control_sidebar.html' %}{% endblock %}
+                    </ul>
+                </div>
+            </nav>
+        {% endblock %}
+        </header>
+
+        <aside class="main-sidebar">
+        <section class="sidebar">
+        {% block page_sidebar %}
+            <ul class="sidebar-menu">
+            {% for item in ALTE_NAVIGATION_MENU %}
+            {% with tree=item template_name="AdminLTE/widgets/page_sidebar/nav_menu_item.html" %}
+                {% include template_name %}
+            {% endwith %}
+            {% endfor %}
+            </ul>
+        {% endblock %}
+        </section>
+        </aside>
+
         <div class="content-wrapper">
-            {% block html_body_content %}
-            <section class="content-header">{% block content_header_section %}{% endblock content_header_section %}</section>
-            <section class="content">{% block content_section %}{% endblock content_section %}</section>
-            {% endblock html_body_content %}
+        {% block html_body_content %}
+            <section class="content-header">
+            {% block content_header_section %}
+                {% block content_header_title %}
+                    <h1>Blank Page<small>it all starts here</small></h1>
+                {% endblock %}
+                {% block content_header_breadcrumb %}
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li><a href="#">Examples</a></li>
+                        <li class="active">Blank page</li>
+                    </ol>
+                {% endblock %}
+            {% endblock content_header_section %}
+            </section>
+            <section class="content">
+            {% block content_section %}
+                <!-- Default box -->
+                <div class="box">
+                    <div class="box-header with-border">
+                    <h3 class="box-title">Title</h3>
+                    <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                        <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+                    </div>
+                    </div>
+                    <div class="box-body">
+                    Start creating your amazing application!
+                    </div><!-- /.box-body -->
+                    <div class="box-footer">
+                    Footer
+                    </div><!-- /.box-footer-->
+                </div><!-- /.box -->
+            {% endblock content_section %}
+            </section>
+        {% endblock html_body_content %}
         </div><!-- ./content-wrap -->
-        {% include "AdminLTE/widgets/page_footer.html" %}
-        {% include "AdminLTE/widgets/page_control_sidebar.html" %}
+
+        <footer class="main-footer">
+        {% block page_footer %}
+            <strong>Copyright &copy; {% now "Y" %} {% autoescape off %}{{ ALTE_PAGE_LOGO_LG }}{% endautoescape %}</strong> All rights reserved.
+        {% endblock %}
+        </footer>
+
+        {% block page_control_sidebar %}{% include "AdminLTE/widgets/page_control_sidebar.html" %}{% endblock %}
+
     </div><!-- ./wrapper -->
 {% endblock html_body %}
 
