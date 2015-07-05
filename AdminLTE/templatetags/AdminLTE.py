@@ -80,3 +80,11 @@ def alte_load_plugin_js(*names):
 @register.simple_tag
 def alte_get_img_url(name):
     return pjoin(adminlte_url_base, name)
+
+@register.simple_tag(takes_context=True)
+def alte_sidebar(context):
+    if callable(sidebar_generator):
+        sidebar = sidebar_generator(context['request'])
+        return sidebar.to_html()
+    else:
+        return ''

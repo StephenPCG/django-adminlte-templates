@@ -1,20 +1,13 @@
-{% if tree.is_header %}
-<li class="header">{{ tree.name }}</li>
+{% autoescape off %}
+{% if item.is_header %}
+<li class="header">{{ item.name }}</li>
 {% else %}
-<li class="{% if tree.is_active %}active{% endif %} {% if tree.children %}treeview{% endif %}">
-    <a href="{{ tree.href }}">
-        {% if tree.icon %}<i class="fa fa-{{ tree.icon }}{% if tree.icon_color %} text-{{ tree.icon_color }}{% endif %}"></i>{% endif %}
-        <span>{{ tree.name }}</span>
-        {% if tree.label %}
-        <span class="label label-{{ tree.label.type }} pull-right">{% autoescape off %}{{ tree.label.data }}{% endautoescape %}</span>
-        {% elif tree.children %}
-        <i class="fa fa-angle-left pull-right"></i>
-        {% endif %}
-    </a>
-    {% if tree.children %}
+<li class="{{ item.get_li_classes }}">
+    <a href="{{ item.href }}">{{ item.get_icon }}{{ item.get_name }}{{ item.get_label }}</a>
+    {% if item.has_children %}
     <ul class="treeview-menu">
-        {% for child in tree.children %}
-            {% with tree=child template_name="AdminLTE/widgets/page_sidebar/nav_menu_item.html" %}
+        {% for child in item.get_children %}
+            {% with item=child template_name="AdminLTE/widgets/page_sidebar/nav_menu_item.html" %}
                 {% include template_name %}
             {% endwith %}
         {% endfor %}
@@ -22,3 +15,4 @@
     {% endif %}
 </li>
 {% endif %}
+{% endautoescape %}

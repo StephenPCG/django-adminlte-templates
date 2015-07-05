@@ -14,9 +14,8 @@ def processor(request):
         key = 'ALTE_%s' % key
         alte_context[key] = value
 
-    navigation_menu = [t.to_dict(request) for t in navigation_menu_list]
-    navigation_menu = [t for t in navigation_menu if t]
-    set('NAVIGATION_MENU', navigation_menu)
+    if callable(sidebar_generator):
+        set('SIDEBAR', sidebar_generator(request))
 
     set('LANGUAGE_CODE', getattr(settings, 'LANGUAGE_CODE', 'en-us'))
 

@@ -48,7 +48,7 @@ def _get(key, default):
 
     return settings
 
-navigation_menu_list = _get('NAVTREE', list())
+sidebar_generator = _get('SIDEBAR_GENERATOR', None)
 
 # bootstrap url base
 _bootstrap_url_base = _get('STATIC.BOOTSTRAP_URL_BASE', None)

@@ -36,17 +36,7 @@
         </header>
 
         <aside class="main-sidebar">
-        <section class="sidebar">
-        {% block page_sidebar %}
-            <ul class="sidebar-menu">
-            {% for item in ALTE_NAVIGATION_MENU %}
-            {% with tree=item template_name="AdminLTE/widgets/page_sidebar/nav_menu_item.html" %}
-                {% include template_name %}
-            {% endwith %}
-            {% endfor %}
-            </ul>
-        {% endblock %}
-        </section>
+        {% block page_sidebar %}{% alte_sidebar %}{% endblock %}
         </aside>
 
         <div class="content-wrapper">
