@@ -1,3 +1,4 @@
+{% load AdminLTE %}
 <script>
 function _search_menu_items(q, items, force_show) {
     // if one item matched the keywork, all children will show, too
@@ -23,7 +24,19 @@ function _search_menu_items(q, items, force_show) {
     }
     return ret;
 }
+function _clear_search() {
+    $('#search-menu-text')[0].value = '';
+    $('#search-menu-button')[0].innerHTML = '{% alte_widget "fa" "search" %}';
+    _search_menu_items('', $('.sidebar-menu > li'));
+}
 function search_menu_items() {
-    return _search_menu_items($('#search-menu-text')[0].value.toLowerCase(), $('.sidebar-menu > li'));
+    var q = $('#search-menu-text')[0].value.toLowerCase();
+    if (q == '') {
+        _clear_search()
+    } else {
+        $('#search-menu-button')[0].innerHTML = '{% alte_widget "fa" "times" %}';
+        $('#search-menu-button')[0].onclick = function(){_clear_search();};
+        _search_menu_items(q, $('.sidebar-menu > li'));
+    }
 }
 </script>

@@ -161,7 +161,7 @@ class SidebarSearchMenuForm(SidebarItem):
             '<input type="text" id="search-menu-text" class="form-control" placeholder="%s" onKeyUp="search_menu_items()"/>' \
                     % (self.placeholder),
             '<span class="input-group-btn">',
-            '<button class="btn btn-flat">%s</button>' % FAIcon('search'),
+            '<button class="btn btn-flat" id="search-menu-button">%s</button>' % FAIcon('search'),
             '</span>',
             '</div>',
             '</div>',

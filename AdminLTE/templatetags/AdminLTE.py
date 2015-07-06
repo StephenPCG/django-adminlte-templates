@@ -7,6 +7,7 @@ from django.contrib.staticfiles.templatetags.staticfiles import static
 from os.path import join as pjoin
 
 from ..settings import Settings
+from ..widgets import FontAwesomeIcon, Label
 
 register = template.Library()
 
@@ -100,3 +101,10 @@ def alte_sidebar(context):
         return sidebar.to_html()
     else:
         return ''
+
+@register.simple_tag
+def alte_widget(name, *args, **kwargs):
+    if name == 'fa':
+        return FontAwesomeIcon(*args, **kwargs).to_html()
+    elif name == 'label':
+        return Label(*args, **kwargs).to_html()
