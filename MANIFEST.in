@@ -3,5 +3,6 @@ include LICENSE
 recursive-include AdminLTE/static *
 recursive-include AdminLTE/templates *
 recursive-include AdminLTE/templatetags *
+recursive-include AdminLTE/widgets *
 global-exclude .git
 global-exclude .gitignore

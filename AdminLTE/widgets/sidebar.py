@@ -166,7 +166,7 @@ class SidebarSearchMenuForm(SidebarItem):
             '</div>',
             '</div>',
         ])
-        js_template = loader.get_template('AdminLTE/widgets/page_sidebar/search_menu_items.js')
+        js_template = loader.get_template('AdminLTE/widgets/sidebar/search_menu_items.js')
         js = js_template.render()
         return html + str(js)
 

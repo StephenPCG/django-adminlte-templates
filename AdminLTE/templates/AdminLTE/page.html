@@ -24,11 +24,11 @@
                 </a>
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
-                        {% block page_header_messages %}{% include 'AdminLTE/widgets/page_header/messages_dropdown.html' %}{% endblock %}
-                        {% block page_header_notifications %}{% include 'AdminLTE/widgets/page_header/notifications_dropdown.html' %}{% endblock %}
-                        {% block page_header_tasks %}{% include 'AdminLTE/widgets/page_header/tasks_dropdown.html' %}{% endblock %}
-                        {% block page_header_user_profile %}{% include 'AdminLTE/widgets/page_header/userprofile_dropdown.html' %}{% endblock %}
-                        {% block page_header_control_sidebar %}{% include 'AdminLTE/widgets/page_header/control_sidebar.html' %}{% endblock %}
+                        {% block page_header_messages %}{% include 'AdminLTE/includes/page_header/messages_dropdown.html' %}{% endblock %}
+                        {% block page_header_notifications %}{% include 'AdminLTE/includes/page_header/notifications_dropdown.html' %}{% endblock %}
+                        {% block page_header_tasks %}{% include 'AdminLTE/includes/page_header/tasks_dropdown.html' %}{% endblock %}
+                        {% block page_header_user_profile %}{% include 'AdminLTE/includes/page_header/userprofile_dropdown.html' %}{% endblock %}
+                        {% block page_header_control_sidebar %}{% include 'AdminLTE/includes/page_header/control_sidebar.html' %}{% endblock %}
                     </ul>
                 </div>
             </nav>
@@ -84,7 +84,7 @@
         {% endblock %}
         </footer>
 
-        {% block page_control_sidebar %}{% include "AdminLTE/widgets/page_control_sidebar.html" %}{% endblock %}
+        {% block page_control_sidebar %}{% include "AdminLTE/includes/page_control_sidebar.html" %}{% endblock %}
 
     </div><!-- ./wrapper -->
 {% endblock html_body %}
