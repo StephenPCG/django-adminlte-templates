@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from .widgets.sidebar import Sidebar
+
 _DEFAULT_REGISTER_FIELDS = [
     {
         'name': 'fullname',
